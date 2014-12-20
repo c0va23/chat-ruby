@@ -7,4 +7,4 @@ gem "thin"
 gem "slim"
 gem "json"
 
-# gem "sprockets"
+gem "sprockets"
