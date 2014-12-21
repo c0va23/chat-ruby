@@ -5,6 +5,5 @@ gem "sinatra"
 gem "thin"
 
 gem "slim"
-gem "json"
 
 gem "sprockets"
