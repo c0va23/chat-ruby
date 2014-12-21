@@ -1,7 +1,24 @@
-html
+html ng-app="ChatApp"
   head
     title Chat
-    script(src="assets/application.js")
+
+    link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+
+    script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"
+    script src="assets/application.js"
 
   body
-    div.messages
+    div ng-controller="Messages"
+      dir.row ng-repeat="message in messages"
+        div.col-md-2
+          | {{message.time}}
+
+        div.col-md-10
+          | {{message.text}}
+
+    div ng-controller="NewMessage" ng-init="cleanMessage() "
+      form.form ng-submit="send()"
+        div.input-group
+          input.form-control placeholder="Message text" ng-model="newMessage.text"
+          span.input-group-btn
+            button.btn.btn-primary type="submit" Send

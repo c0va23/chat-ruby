@@ -1,2 +1,5 @@
-//= require event_source.js
-console.log("application");
+//= require controllers.js
+
+angular.module("ChatApp", [
+  "ChatApp.Controllers",
+]);
