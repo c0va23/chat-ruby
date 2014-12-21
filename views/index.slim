@@ -17,10 +17,10 @@ html ng-app="ChatApp"
     div.messages
       div.container-fluid ng-controller="Messages"
         p.row ng-repeat="message in messages"
-          span.col-md-1.text-right.text-muted
+          span.col-md-1.col-sm-1.text-right.text-muted
             | {{ message.user }}:
 
-          span.col-md-10
+          span.col-md-10.col-sm-11
             | {{message.text}}
 
           span.col-md-1.visible-lg-block.text-muted
