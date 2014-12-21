@@ -12,10 +12,10 @@ html ng-app="ChatApp"
     div.messages
       div.container-fluid ng-controller="Messages"
         dir.row ng-repeat="message in messages" id=""
-          div.col-md-2
-            | {{message.time}}
+          div.col-md-1
+            | {{ message.time | parseDate | date:"yy-MM-dd HH:mm" }}
 
-          div.col-md-10
+          div.col-md-1
             | {{message.text}}
 
     div.new-message
