@@ -26,13 +26,15 @@ class Chat < Sinatra::Application
       last_message_index = messages.find_index { |m| m.id == last_event_id }
       if last_message_index && last_message_index < messages.size
         messages[last_message_index+1..-1]
+      else
+        []
       end
     else
       messages
     end
 
     stream :keep_open do |connection|
-      messages.each do |message|
+      undelivered_messages.each do |message|
         message.write_to(connection)
       end
 
