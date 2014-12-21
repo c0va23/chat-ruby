@@ -1,17 +1,23 @@
 angular
 .module("ChatApp.Controllers", [])
 .controller("NewMessage", function($scope, $http, $log){
+  var user = angular.element("meta[name='user']").attr("content");
+
+  $scope.newMessage ={
+    user: user,
+    text: "",
+  };
 
   $scope.cleanMessage = function(){
-    $scope.newMessage = {text: ""};
+    $scope.newMessage.text = "";
   };
 
   $scope.send = function() {
-    $log.debug($scope.newMessage);
-
-    $http.post("/messages", $scope.newMessage);
-
-    $scope.cleanMessage();
+    $http
+      .post("/messages", $scope.newMessage)
+      .success(function(){
+        $scope.cleanMessage();
+      });
   };
 })
 .controller("Messages", function($scope, $log){

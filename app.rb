@@ -1,9 +1,10 @@
 
-class Message < Struct.new(:id, :text, :time)
-  def initialize(text)
+class Message < Struct.new(:id, :text, :time, :user)
+  def initialize(text, user)
     self.id = SecureRandom.uuid
-    self.text = text
     self.time = Time.now
+    self.text = text
+    self.user = user
   end
 
   def write_to(connection)
@@ -15,7 +16,8 @@ class Chat < Sinatra::Application
   connections = []
   messages = []
 
-  get "/" do
+  get %r{/(he|she)} do |user|
+    @user = user
     slim :index
   end
 
@@ -48,7 +50,7 @@ class Chat < Sinatra::Application
   post "/messages" do
     message_data = JSON.parse(request.body.read)
 
-    message = Message.new(message_data['text'])
+    message = Message.new(message_data['text'], message_data['user'])
     messages << message
 
     connections.each do |connection|
