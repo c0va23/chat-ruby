@@ -14,16 +14,16 @@ html ng-app="ChatApp"
   body
     div.messages
       div.container-fluid ng-controller="Messages"
-        dir.row ng-repeat="message in messages" id=""
-          div.col-md-1
-            span.pull-right.text-muted
-              | {{ message.user }}:
+        p.row ng-repeat="message in messages"
+          span.col-md-1.text-right.text-muted
+            | {{ message.user }}:
 
-          div.col-md-10
+          span.col-md-10
             | {{message.text}}
 
-          div.col-md-1.text-muted
-            | {{ message.time | parseDate | date:"yy-MM-dd HH:mm" }}
+          span.col-md-1.visible-lg-block.text-muted
+            span
+              | {{ message.time | parseDate | date:"yy-MM-dd HH:mm" }}
 
     div.new-message
       div.container-fluid ng-controller="NewMessage"
